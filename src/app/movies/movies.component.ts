@@ -1,17 +1,21 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { Movie } from '../movie';
+
 
 @Component({
-    selector: 'movies', // ==> <movies></movies> , '.movies'==> <div class = "movies">
-    templateUrl: 'movies.component.html',
-    styles: [`
-        h2 {
-            color: blue;
-        }
-        // h4 {
-        //     color: yellow;  // movies comp. içinde olan movie comp. h4 ile tanımlanan etiketler movies.component.style'den ayarlanamaz
-        // }
-        `]
+  selector: 'movies', // ==> <movies></movies> , '.movies'==> <div class = "movies">
+  templateUrl: 'movies.component.html'
 })
 export class MoviesComponent {
+  title = 'Movie List';
 
+    movie: Movie = {
+        id: 1,
+        name: 'Movie Name'
+    }
+
+
+  getTitle() {
+    return this.title;
+  }
 }
