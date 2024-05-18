@@ -1,16 +1,4 @@
-<div class="card" *ngIf="selectedMovie"> <!--Alttaki şablon sadece bir movie'ye tıklandığında çalışır-->
-  <div class="card-body">
-    <span class="badge bg-warning">
-      id: {{ selectedMovie.id }} name: {{ selectedMovie.name}}
-    </span>
-    <div class="input-group">
-      <input type="text" [(ngModel)] = "selectedMovie.name" class="form-control"><!--inputa ne yazılırsa o seçilen elemanın güncellenen değeri olur-->
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type = "button">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
+<movie-detail [movie] = "selectedMovie"></movie-detail> <!-- Seçilen bir movie listesini burada yazmak yerine ayrı bir dosyada tanımlamak daha temiz görünür-->
 
 <!-- Movie List -->
 <div class="card">
