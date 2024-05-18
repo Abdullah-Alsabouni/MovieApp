@@ -1,11 +1,27 @@
+<div class="card" *ngIf="selectedMovie"> <!--Alttaki şablon sadece bir movie'ye tıklandığında çalışır-->
+  <div class="card-body">
+    <span class="badge bg-warning">
+      id: {{ selectedMovie.id }} name: {{ selectedMovie.name}}
+    </span>
+    <div class="input-group">
+      <input type="text" [(ngModel)] = "selectedMovie.name" class="form-control"><!--inputa ne yazılırsa o seçilen elemanın güncellenen değeri olur-->
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type = "button">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Movie List -->
 <div class="card">
   <div class="card-header">
     {{title}}
   </div>
-  <ul class="list-group list-group-flush">
-    <li *ngFor="let movie of movies" class="list-group-item"> <!-- movies = Movies(movie.datasource.ts)-->
-      <span class = "badge text-bg-primary">{{movie.id}}</span> {{movie.name}}
-      <button type="button" class="btn-close ms-5" aria-label="Close"></button> 
+  <ul class="list-group list-group-flush"> <!--onSelect(movie) listede hangi movie seçilirse movie selectedMovie'ye atanıyor-->
+    <li *ngFor="let movie of movies" (click)="onSelect(movie)" class="list-group-item" 
+      [class.active]="movie === selectedMovie"> 
+      <span class="badge text-bg-primary">{{movie.id}}</span> {{movie.name}}
+      <button type="button" class="btn-close ms-5" aria-label="Close"></button>
     </li>
   </ul>
 </div>
