@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Movies } from '../movie.datasource';
 import { Movie } from '../movie';
+import { MovieService } from '../movie.service';
 
 
 @Component({
@@ -9,11 +9,21 @@ import { Movie } from '../movie';
 })
 export class MoviesComponent {
   title = 'Movie List';
-  movies = Movies;
+  movies: Movie[] | null = null; 
   selectedMovie: Movie | null = null;
+
+  constructor(private movieService: MovieService){} // MovieSerive'ten bir nesne Injectable et
 
   
   onSelect(movie: Movie): void { // Listede seçilen bir elemanı selectedMovie'ye atama işlemi
       this.selectedMovie = movie;  
+  }
+
+  getMovies(): void {
+    this.movies = this.movieService.getMovies();
+  } 
+
+  ngOnInit(): void { // nesne üretildikten sonra çalışır
+    this.getMovies();
   }
 }
